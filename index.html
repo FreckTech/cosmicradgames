@@ -3,8 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cosmic RAD Games — Coming Soon</title>
+  <title>Cosmic RAD Games</title>
   <meta name="description" content="We craft heartfelt, memorable game experiences for players everywhere." />
+
+  <!-- Font Awesome (open-source icons via CDN) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     :root{
       --bg:#070812;
@@ -82,35 +87,34 @@
       line-height:1.55;
       max-width: 54ch;
     }
+
     .row{
       margin-top:18px;
       display:flex;
       flex-wrap:wrap;
       gap:10px;
     }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 14px;
+
+    /* Icon-only social buttons */
+    .row.icons{ gap:12px; }
+    .iconbtn{
+      width:44px;height:44px;
+      display:grid;place-items:center;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.25);
+      background:rgba(0,0,0,.25);
       color:var(--text);
       text-decoration:none;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
       user-select:none;
+      font-size:18px;
     }
-    .btn:hover{
+    .iconbtn:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.08);
       border-color: rgba(255,255,255,.26);
     }
-    .dot{
-      width:8px; height:8px; border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,.15));
-      box-shadow: 0 0 14px rgba(255,255,255,.35);
-    }
+
     .foot{
       margin-top:16px;
       color:rgba(255,255,255,.55);
@@ -126,7 +130,6 @@
     <div class="card" role="main">
       <div class="top">
         <div class="logo">
-          <!-- Put your image here: /assets/logo.png -->
           <img src="assets/logo.png" alt="Cosmic RAD Games logo" />
         </div>
 
@@ -135,18 +138,19 @@
           <p class="tag">Chasing a childhood dream 🎈 making art and video games</p>
           <p class="desc">We craft heartfelt, memorable game experiences for players everywhere.</p>
 
-          <div class="row">
-            <a class="btn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank" rel="noreferrer">
-              <span class="dot"></span> LinkedIn
+          <!-- Icon-only social links -->
+          <div class="row icons" aria-label="Social links">
+            <a class="iconbtn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
             </a>
-            <a class="btn" href="https://x.com/cosmicradgames" target="_blank" rel="noreferrer">
-              <span class="dot"></span> X (@cosmicradgames)
+            <a class="iconbtn" href="https://x.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="X">
+              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
             </a>
-            <a class="btn" href="https://www.youtube.com/@cosmicradgames" target="_blank" rel="noreferrer">
-              <span class="dot"></span> YouTube (@cosmicradgames)
+            <a class="iconbtn" href="https://www.youtube.com/@cosmicradgames" target="_blank" rel="noreferrer" aria-label="YouTube">
+              <i class="fa-brands fa-youtube" aria-hidden="true"></i>
             </a>
-            <a class="btn" href="https://www.instagram.com/cosmicradgames" target="_blank" rel="noreferrer">
-              <span class="dot"></span> Instagram (@cosmicradgames)
+            <a class="iconbtn" href="https://www.instagram.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
             </a>
           </div>
 
@@ -241,10 +245,11 @@
     window.addEventListener("resize", resize);
 
     resize();
-    // first paint background
     ctx.fillStyle = "black";
     ctx.fillRect(0,0,w,h);
     draw();
+
+    // Auto-year footer
     document.getElementById("year").textContent = "© " + new Date().getFullYear();
   </script>
 </body>
