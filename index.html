@@ -151,7 +151,7 @@
           </div>
 
           <div class="foot">
-            cosmicradgames.com • Built with GitHub Pages
+            <span id="year"></span> Cosmic RAD Games. All rights reserved.
           </div>
         </div>
       </div>
@@ -245,6 +245,7 @@
     ctx.fillStyle = "black";
     ctx.fillRect(0,0,w,h);
     draw();
+    document.getElementById("year").textContent = "© " + new Date().getFullYear();
   </script>
 </body>
 </html>
