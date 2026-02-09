@@ -201,6 +201,18 @@
       color: var(--muted2);
       font-size: 13px;
     }
+    
+    /* Prevent blue highlight / selection */
+    canvas, .scrollHint, .iconbtn, .logo img{
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+    }
+    
+    canvas{
+      touch-action: none;
+    }
   </style>
 </head>
 
