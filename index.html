@@ -6,52 +6,47 @@
   <title>Cosmic RAD Games</title>
   <meta name="description" content="We craft heartfelt, memorable game experiences for players everywhere." />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- (Optional) Favicon: put file at /assets/icons/favicon.png -->
+  <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- particles.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/1.0.0/particles.min.js"></script>
-
   <style>
     :root{
-      --text:rgba(255,255,255,.93);
+      --bg:#070812;
+      --card:rgba(10,12,28,.55);
+      --stroke:rgba(255,255,255,.12);
+      --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
-      --muted2:rgba(255,255,255,.55);
-      --stroke:rgba(255,255,255,.14);
-      --panelTop:rgba(255,255,255,.07);
-      --panelBot:rgba(255,255,255,.03);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 30% 20%, #1a1240 0%, var(--bg) 55%, #04040b 100%);
       color:var(--text);
-      background:
-        radial-gradient(900px 700px at 20% 15%, rgba(186,85,255,.30) 0%, rgba(0,0,0,0) 60%),
-        radial-gradient(1100px 800px at 80% 30%, rgba(72,120,255,.20) 0%, rgba(0,0,0,0) 55%),
-        linear-gradient(180deg, #15083b, #050314);
-      overflow:auto; overflow-x:hidden;
+      overflow:hidden;
     }
-
-    #particles-js{
+    canvas{
       position:fixed; inset:0;
-      z-index:0;
+      width:100vw; height:100vh;
+      display:block;
     }
 
     .wrap{
-      position:relative; z-index:1;
-      min-height:100%;
-      display:grid; place-items:center;
+      position:relative;
+      height:100%;
+      display:grid;
+      place-items:center;
       padding:28px;
     }
+
     .card{
       width:min(860px, 100%);
-      background: linear-gradient(180deg, var(--panelTop), var(--panelBot));
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       border:1px solid var(--stroke);
       border-radius:24px;
       padding:32px;
@@ -59,83 +54,40 @@
       box-shadow: 0 30px 90px rgba(0,0,0,.55);
       text-align:center;
     }
-    .top{display:flex;flex-direction:column;align-items:center;gap:18px}
+
+    .top{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:22px;
+    }
+
     .logo{
-      width:160px;height:160px;border-radius:22px;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(0,0,0,.25);
-      overflow:hidden;display:grid;place-items:center;
+      width:160px;
+      height:160px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
+      overflow:hidden;
+      display:grid;
+      place-items:center;
     }
-    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .logo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
     h1{
-      margin:2px 0 0;
-      font-family:"Space Grotesk", Inter, system-ui, sans-serif;
-      font-size: clamp(30px, 4.2vw, 48px);
-      line-height:1.02;
+      margin:0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing:.3px;
+      line-height:1.05;
     }
-    .tag{margin:6px 0 0;color:var(--muted);font-weight:500}
-    .desc{margin:10px auto 0;color:rgba(255,255,255,.80);max-width:56ch;line-height:1.6}
-    .row{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-    .iconbtn{
-      width:46px;height:46px;display:grid;place-items:center;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(0,0,0,.25);
-      color:var(--text);
-      text-decoration:none;
-      font-size:19px;
-      transition:transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .iconbtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28)}
-    .foot{margin-top:18px;color:var(--muted2);font-size:13px}
-    .spacer{height:16vh}
-  </style>
-</head>
-<body>
-  <div id="particles-js" aria-hidden="true"></div>
 
-  <div class="wrap">
-    <div class="card" role="main">
-      <div class="top">
-        <div class="logo"><img src="assets/logo.png" alt="Cosmic RAD Games logo" /></div>
-        <h1>Cosmic RAD Games</h1>
-        <p class="tag">Chasing a childhood dream 🎈 making art and video games</p>
-        <p class="desc">We craft heartfelt, memorable game experiences for players everywhere.</p>
-
-        <div class="row" aria-label="Social links">
-          <a class="iconbtn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a class="iconbtn" href="https://x.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-          <a class="iconbtn" href="https://www.youtube.com/@cosmicradgames" target="_blank" rel="noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a class="iconbtn" href="https://www.instagram.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-
-        <div class="foot"><span id="year"></span> Cosmic RAD Games. All rights reserved.</div>
-      </div>
-    </div>
-
-    <div class="spacer" aria-hidden="true"></div>
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = "© " + new Date().getFullYear();
-
-    // No interactivity (hover/click disabled)
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 120, density: { enable: true, value_area: 900 } },
-        color: { value: ["#ffffff", "#caa7ff", "#7aa7ff", "#ff7bd6"] },
-        shape: { type: "circle" },
-        opacity: { value: 0.55, random: true },
-        size: { value: 2.0, random: true },
-        line_linked: { enable: true, distance: 140, color: "#a77cff", opacity: 0.12, width: 1 },
-        move: { enable: true, speed: 0.55, direction: "none", out_mode: "out" }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: { onhover: { enable: false }, onclick: { enable: false }, resize: true }
-      },
-      retina_detect: true
-    });
-  </script>
-</body>
-</html>
+    .tag{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size: clamp(15
