@@ -6,23 +6,19 @@
   <title>Cosmic RAD Games</title>
   <meta name="description" content="We craft heartfelt, memorable game experiences for players everywhere." />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- tsParticles Stars preset (bundle) -->
-  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-stars@3/tsparticles.preset.stars.bundle.min.js"></script>
+  <!-- three.js + Vanta FOG -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.fog.min.js"></script>
 
   <style>
     :root{
-      --bg0:#050314;
-      --bg1:#160A3A;
-      --bg2:#2B0B66;
       --stroke:rgba(255,255,255,.14);
       --text:rgba(255,255,255,.93);
       --muted:rgba(255,255,255,.70);
@@ -36,11 +32,7 @@
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
-      background:
-        radial-gradient(900px 700px at 20% 15%, rgba(186,85,255,.35) 0%, rgba(0,0,0,0) 60%),
-        radial-gradient(1100px 800px at 80% 30%, rgba(72,120,255,.22) 0%, rgba(0,0,0,0) 55%),
-        radial-gradient(1200px 900px at 50% 90%, rgba(255,70,170,.12) 0%, rgba(0,0,0,0) 50%),
-        linear-gradient(180deg, var(--bg1), var(--bg0));
+      background: #070312;
       overflow:auto; overflow-x:hidden;
       scrollbar-width: thin;
       scrollbar-color: rgba(255,255,255,.22) rgba(0,0,0,.25);
@@ -53,17 +45,15 @@
       border:2px solid rgba(0,0,0,.25);
     }
 
-    #tsparticles{
+    #bg{
       position:fixed; inset:0;
       z-index:0;
     }
 
     .wrap{
-      position:relative;
-      z-index:1;
+      position:relative; z-index:1;
       min-height:100%;
-      display:grid;
-      place-items:center;
+      display:grid; place-items:center;
       padding:28px;
     }
     .card{
@@ -109,7 +99,7 @@
   </style>
 </head>
 <body>
-  <div id="tsparticles" aria-hidden="true"></div>
+  <div id="bg" aria-hidden="true"></div>
 
   <div class="wrap">
     <div class="card" role="main">
@@ -136,22 +126,25 @@
   <script>
     document.getElementById("year").textContent = "© " + new Date().getFullYear();
 
-    // Stars preset + purple cosmic tweaks + NO mouse interaction
-    (async () => {
-      await tsParticles.load("tsparticles", {
-        preset: "stars",
-        background: { color: "transparent" },
-        interactivity: {
-          events: { onHover: { enable: false }, onClick: { enable: false }, resize: true }
-        },
-        particles: {
-          color: { value: ["#ffffff", "#caa7ff", "#7aa7ff", "#ff7bd6"] },
-          opacity: { value: { min: 0.25, max: 0.9 } },
-          size: { value: { min: 0.6, max: 2.2 } },
-          move: { speed: 0.25 }
-        }
-      });
-    })();
+    // Vanta FOG: set mouseControls false (no interaction)
+    const effect = VANTA.FOG({
+      el: "#bg",
+      mouseControls: false,
+      touchControls: false,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      highlightColor: 0xb06cff,  // purple glow
+      midtoneColor:    0x3c1a7a,  // deep violet
+      lowlightColor:   0x0b0620,  // near-black
+      baseColor:       0x050314,
+      blurFactor: 0.70,
+      speed: 1.10,
+      zoom: 0.90
+    });
+
+    // Cleanup if needed later
+    window.addEventListener("beforeunload", () => effect && effect.destroy && effect.destroy());
   </script>
 </body>
 </html>
