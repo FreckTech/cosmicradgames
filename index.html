@@ -74,7 +74,7 @@
     }
 
     .logo{
-      width:190px; height:190px;
+      width:220px; height:220px;
       border-radius:26px;
       border:1px solid rgba(255,255,255,.16);
       background: rgba(0,0,0,.18);
@@ -126,13 +126,14 @@
       border-color: rgba(255,255,255,.28);
     }
 
-    /* "Who are we" scroll hint */
+    /* Scroll hint: arrow only */
     .scrollHint{
       margin-top:26px;
       display:inline-flex;
       align-items:center;
-      gap:10px;
-      padding:10px 14px;
+      justify-content:center;
+      width:58px;
+      height:58px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.16);
       background: rgba(0,0,0,.12);
@@ -147,21 +148,14 @@
       border-color: rgba(255,255,255,.26);
     }
 
-    .chev{
-      width:34px; height:34px;
-      display:grid; place-items:center;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.10);
-    }
-
     /* bouncing arrow animation */
     @keyframes bob {
       0%,100% { transform: translateY(0); }
-      50%     { transform: translateY(6px); }
+      50%     { transform: translateY(7px); }
     }
-    .chev i{
+    .scrollHint i{
       animation: bob 1.2s ease-in-out infinite;
+      font-size: 20px;
     }
 
     .hairline{
@@ -172,7 +166,7 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
     }
 
-    /* centered about content (no "About" title) */
+    /* centered about content + title */
     .about{
       padding: 54px 22px 74px;
       display:flex;
@@ -183,6 +177,14 @@
     .aboutInner{
       width:min(920px, 100%);
       max-width: 72ch;
+    }
+
+    .aboutTitle{
+      margin: 0 0 14px;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: .2px;
+      color: rgba(255,255,255,.88);
     }
 
     .aboutText{
@@ -229,9 +231,9 @@
           </a>
         </div>
 
-        <a class="scrollHint" href="#about" aria-label="Scroll to Who we are">
-          <span>Who are we?</span>
-          <span class="chev" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
+        <!-- Arrow only (animated) -->
+        <a class="scrollHint" href="#about" aria-label="Scroll to What we do">
+          <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
         </a>
       </div>
     </section>
@@ -240,6 +242,8 @@
 
     <section class="about" id="about">
       <div class="aboutInner">
+        <div class="aboutTitle">What we do</div>
+
         <div class="aboutText">
           <p>
             Crafting heartfelt, memorable game experiences for players everywhere, blending imagination,
@@ -262,7 +266,7 @@
     // Year
     document.getElementById("year").textContent = "© " + new Date().getFullYear();
 
-    // Smooth scroll (slower / easier on eye)
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", (e) => {
         const id = a.getAttribute("href");
