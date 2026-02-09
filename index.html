@@ -6,7 +6,7 @@
   <title>Cosmic RAD Games</title>
   <meta name="description" content="We craft heartfelt, memorable game experiences for players everywhere." />
 
-  <!-- (Optional) Favicon: put file at /assets/icons/favicon.png -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 
   <!-- Font Awesome Icons -->
@@ -15,90 +15,185 @@
 
   <style>
     :root{
-      --bg:#070812;
-      --card:rgba(10,12,28,.55);
-      --stroke:rgba(255,255,255,.12);
+      --bg0:#05040d;
+      --bg1:#140a2f;
+      --glow1:#b26bff;
+      --glow2:#4aa3ff;
+      --glow3:#ff4fbf;
+
+      --stroke:rgba(255,255,255,.14);
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.55);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 800px at 30% 20%, #1a1240 0%, var(--bg) 55%, #04040b 100%);
       color:var(--text);
-      overflow:hidden;
+
+      /* more colorful cosmic background */
+      background:
+        radial-gradient(900px 650px at 18% 20%, rgba(178,107,255,.25) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(900px 650px at 82% 25%, rgba(74,163,255,.18) 0%, rgba(0,0,0,0) 55%),
+        radial-gradient(900px 650px at 50% 90%, rgba(255,79,191,.12) 0%, rgba(0,0,0,0) 55%),
+        radial-gradient(1200px 900px at 30% 20%, #1a1240 0%, var(--bg1) 50%, var(--bg0) 100%);
+
+      /* allow scroll for the “about” section */
+      overflow:auto;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.22) rgba(0,0,0,.25);
     }
+
+    body::-webkit-scrollbar{width:10px}
+    body::-webkit-scrollbar-track{background:rgba(0,0,0,.25)}
+    body::-webkit-scrollbar-thumb{
+      background:rgba(255,255,255,.18);
+      border-radius:999px;
+      border:2px solid rgba(0,0,0,.25);
+    }
+
     canvas{
       position:fixed; inset:0;
       width:100vw; height:100vh;
       display:block;
+      z-index:0;
+      pointer-events:none;
     }
 
     .wrap{
       position:relative;
-      height:100%;
+      z-index:1;
+      min-height:100vh;
       display:grid;
       place-items:center;
       padding:28px;
     }
 
+    /* upgraded card */
     .card{
-      width:min(860px, 100%);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid var(--stroke);
-      border-radius:24px;
-      padding:32px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+      width:min(900px, 100%);
+      border-radius:28px;
+      padding:34px 34px 28px;
       text-align:center;
+      background:
+        radial-gradient(900px 500px at 50% -40%, rgba(178,107,255,.22) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(700px 400px at 110% 40%, rgba(74,163,255,.14) 0%, rgba(0,0,0,0) 55%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(12px);
+      box-shadow:
+        0 30px 90px rgba(0,0,0,.55),
+        0 0 0 1px rgba(255,255,255,.06) inset;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* subtle neon rim */
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      border-radius:30px;
+      background: radial-gradient(1000px 500px at 20% 20%, rgba(178,107,255,.28), transparent 55%),
+                  radial-gradient(900px 500px at 80% 35%, rgba(74,163,255,.18), transparent 55%),
+                  radial-gradient(900px 500px at 50% 95%, rgba(255,79,191,.14), transparent 60%);
+      filter: blur(14px);
+      opacity:.7;
+      pointer-events:none;
     }
 
     .top{
+      position:relative;
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:22px;
+      gap:18px;
+      z-index:1;
     }
 
     .logo{
       width:160px;
       height:160px;
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.25);
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.22);
       overflow:hidden;
       display:grid;
       place-items:center;
+      box-shadow: 0 14px 40px rgba(0,0,0,.45);
     }
-
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
 
     h1{
       margin:0;
-      font-size: clamp(28px, 4vw, 44px);
+      font-size: clamp(30px, 4.2vw, 48px);
       letter-spacing:.3px;
       line-height:1.05;
     }
 
     .tag{
-      margin:10px 0 0;
+      margin:0;
       color:var(--muted);
       font-size: clamp(15px, 1.6vw, 18px);
     }
 
+    /* “Who are we?” jump button */
+    .jump{
+      margin-top:4px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
+      color: rgba(255,255,255,.85);
+      text-decoration:none;
+      font-size:14px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .jump:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.26);
+    }
+    .jump i{opacity:.9}
+
+    .divider{
+      width:min(520px, 90%);
+      height:1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      margin: 12px 0 2px;
+    }
+
+    /* About section (separated, less compact) */
+    .about{
+      width:100%;
+      max-width:62ch;
+      margin-top:6px;
+      padding: 0;
+      text-align:center;
+    }
+
+    .about h2{
+      margin: 8px 0 8px;
+      font-size: 15px;
+      letter-spacing:.2px;
+      color: rgba(255,255,255,.88);
+      font-weight: 600;
+    }
+
     .desc{
-      margin:14px auto 0;
-      color:rgba(255,255,255,.78);
-      font-size:16px;
-      line-height:1.55;
-      max-width:54ch;
+      margin: 0 auto;
+      color: rgba(255,255,255,.78);
+      font-size: 16px;
+      line-height: 1.7;
     }
 
     .row{
@@ -110,21 +205,18 @@
     }
 
     .iconbtn{
-      width:44px;
-      height:44px;
+      width:46px;
+      height:46px;
       display:grid;
       place-items:center;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.16);
-      background:rgba(0,0,0,.25);
+      background:rgba(0,0,0,.22);
       color:var(--text);
       text-decoration:none;
-      font-size:18px;
-      transition: transform .12s ease,
-                  background .12s ease,
-                  border-color .12s ease;
+      font-size:19px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
-
     .iconbtn:hover{
       transform:translateY(-1px);
       background:rgba(255,255,255,.08);
@@ -133,9 +225,12 @@
 
     .foot{
       margin-top:18px;
-      color:rgba(255,255,255,.55);
+      color:var(--muted2);
       font-size:13px;
     }
+
+    /* small extra space so scroll feels intentional */
+    .spacer{height:14vh}
   </style>
 </head>
 <body>
@@ -150,28 +245,36 @@
 
         <h1>Cosmic RAD Games</h1>
 
-        <p class="tag">
-          In pursuit of a childhood dream 🎈 making art and video games
-        </p>
+        <p class="tag">In pursuit of a childhood dream 🎈 making art and video games</p>
 
-        <p class="desc">
-          Crafting heartfelt, memorable game experiences for players everywhere, blending imagination, polished gameplay, and striking visual worlds. Cosmic RAD Games is guided by a deep love of games, constant experimentation, and the pursuit of experiences that linger long after the screen fades to black.
-        </p>
+        <a class="jump" href="#about" aria-label="Scroll to about">
+          Who are we? <i class="fa-solid fa-arrow-down"></i>
+        </a>
 
-        <!-- Social icons -->
-        <div class="row icons">
+        <div class="divider"></div>
+
+        <section class="about" id="about">
+          <h2>About</h2>
+          <p class="desc">
+            Crafting heartfelt, memorable game experiences for players everywhere—blending imagination, polished gameplay,
+            and striking visual worlds.
+          </p>
+          <p class="desc" style="margin-top:10px">
+            Cosmic RAD Games is guided by a deep love of games, constant experimentation, and the pursuit of experiences
+            that linger long after the screen fades to black.
+          </p>
+        </section>
+
+        <div class="row icons" aria-label="Social links">
           <a class="iconbtn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank" rel="noreferrer" aria-label="LinkedIn">
             <i class="fa-brands fa-linkedin-in"></i>
           </a>
-
           <a class="iconbtn" href="https://x.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="X">
             <i class="fa-brands fa-x-twitter"></i>
           </a>
-
           <a class="iconbtn" href="https://www.youtube.com/@cosmicradgames" target="_blank" rel="noreferrer" aria-label="YouTube">
             <i class="fa-brands fa-youtube"></i>
           </a>
-
           <a class="iconbtn" href="https://www.instagram.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="Instagram">
             <i class="fa-brands fa-instagram"></i>
           </a>
@@ -182,9 +285,15 @@
         </div>
       </div>
     </div>
+
+    <div class="spacer" aria-hidden="true"></div>
   </div>
 
   <script>
+    // Footer year
+    document.getElementById("year").textContent = "© " + new Date().getFullYear();
+
+    // Starfield (no mouse interaction)
     const c = document.getElementById("stars");
     const ctx = c.getContext("2d");
     const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
@@ -219,31 +328,25 @@
     }
 
     function draw(){
-      ctx.fillStyle = "rgba(0,0,0,.25)";
+      ctx.fillStyle = "rgba(0,0,0,.22)";
       ctx.fillRect(0,0,w,h);
 
       for(const s of stars){
         s.tw += .02;
         s.x  -= s.sp;
-
         if(s.x < -80) Object.assign(s, makeStar(false));
 
         ctx.beginPath();
-        ctx.fillStyle = `rgba(255,255,255,${.2 + .7*s.z})`;
+        ctx.fillStyle = `rgba(255,255,255,${.18 + .75*s.z})`;
         ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
         ctx.fill();
       }
-
       requestAnimationFrame(draw);
     }
 
     window.addEventListener("resize", resize);
-
     resize();
     draw();
-
-    document.getElementById("year").textContent =
-      "© " + new Date().getFullYear();
   </script>
 </body>
 </html>
