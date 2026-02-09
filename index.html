@@ -58,7 +58,6 @@
       pointer-events:none;
     }
 
-    /* --- layout like the example --- */
     main{position:relative; z-index:1}
 
     .hero{
@@ -127,71 +126,77 @@
       border-color: rgba(255,255,255,.28);
     }
 
-    .down{
-      margin-top:28px;
+    /* "Who are we" scroll hint */
+    .scrollHint{
+      margin-top:26px;
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      width:56px; height:56px;
+      gap:10px;
+      padding:10px 14px;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.16);
       background: rgba(0,0,0,.12);
-      color: rgba(255,255,255,.85);
+      color: rgba(255,255,255,.88);
       text-decoration:none;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
     }
-    .down:hover{
-      transform: translateY(1px);
+    .scrollHint:hover{
+      transform: translateY(-1px);
       background: rgba(255,255,255,.06);
       border-color: rgba(255,255,255,.26);
     }
-    .down i{font-size:20px}
 
-    /* About section */
-    .about{
-      padding: 22px 22px 60px;
-      display:flex;
-      justify-content:center;
+    .chev{
+      width:34px; height:34px;
+      display:grid; place-items:center;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.10);
     }
 
-    .aboutInner{
-      width:min(920px, 100%);
-      padding: 26px 0 0;
+    /* bouncing arrow animation */
+    @keyframes bob {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(6px); }
+    }
+    .chev i{
+      animation: bob 1.2s ease-in-out infinite;
     }
 
-    .aboutTitle{
-      margin: 0 0 10px;
-      font-size: 22px;
-      letter-spacing:.2px;
-      color: rgba(255,255,255,.90);
-    }
-
-    .aboutText{
-      margin:0;
-      max-width: 66ch;
-      color: rgba(255,255,255,.78);
-      font-size: 16px;
-      line-height: 1.85;
-    }
-
-    .aboutText p{margin: 0 0 14px}
-    .footer{
-      margin-top: 34px;
-      color: var(--muted2);
-      font-size: 13px;
-    }
-
-    /* Align About like the example (left text) */
-    .aboutInner{ text-align:left; }
-    .aboutTitle, .aboutText, .footer{ margin-left:0; }
-
-    /* small glow divider */
     .hairline{
       height:1px;
       width:100%;
       max-width: 920px;
       margin: 0 auto;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+    }
+
+    /* centered about content (no "About" title) */
+    .about{
+      padding: 54px 22px 74px;
+      display:flex;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .aboutInner{
+      width:min(920px, 100%);
+      max-width: 72ch;
+    }
+
+    .aboutText{
+      margin:0;
+      color: rgba(255,255,255,.80);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+    .aboutText p{margin:0 0 16px}
+
+    .footer{
+      margin-top: 30px;
+      color: var(--muted2);
+      font-size: 13px;
     }
   </style>
 </head>
@@ -200,7 +205,6 @@
   <canvas id="stars"></canvas>
 
   <main>
-    <!-- HERO (centered like your example) -->
     <section class="hero" id="top">
       <div class="heroInner">
         <div class="logo">
@@ -225,19 +229,17 @@
           </a>
         </div>
 
-        <a class="down" href="#about" aria-label="Scroll to About">
-          <i class="fa-solid fa-chevron-down"></i>
+        <a class="scrollHint" href="#about" aria-label="Scroll to Who we are">
+          <span>Who are we?</span>
+          <span class="chev" aria-hidden="true"><i class="fa-solid fa-chevron-down"></i></span>
         </a>
       </div>
     </section>
 
     <div class="hairline" aria-hidden="true"></div>
 
-    <!-- ABOUT (below, left-aligned like the example) -->
     <section class="about" id="about">
       <div class="aboutInner">
-        <h2 class="aboutTitle">About</h2>
-
         <div class="aboutText">
           <p>
             Crafting heartfelt, memorable game experiences for players everywhere, blending imagination,
@@ -259,6 +261,17 @@
   <script>
     // Year
     document.getElementById("year").textContent = "© " + new Date().getFullYear();
+
+    // Smooth scroll (slower / easier on eye)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
 
     // Starfield (no mouse interaction)
     const c = document.getElementById("stars");
