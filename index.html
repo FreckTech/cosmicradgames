@@ -13,16 +13,15 @@
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- three.js + Vanta FOG -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.fog.min.js"></script>
+  <!-- particles.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/1.0.0/particles.min.js"></script>
 
   <style>
     :root{
-      --stroke:rgba(255,255,255,.14);
       --text:rgba(255,255,255,.93);
       --muted:rgba(255,255,255,.70);
       --muted2:rgba(255,255,255,.55);
+      --stroke:rgba(255,255,255,.14);
       --panelTop:rgba(255,255,255,.07);
       --panelBot:rgba(255,255,255,.03);
     }
@@ -32,20 +31,14 @@
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
-      background: #070312;
+      background:
+        radial-gradient(900px 700px at 20% 15%, rgba(186,85,255,.30) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(1100px 800px at 80% 30%, rgba(72,120,255,.20) 0%, rgba(0,0,0,0) 55%),
+        linear-gradient(180deg, #15083b, #050314);
       overflow:auto; overflow-x:hidden;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,.22) rgba(0,0,0,.25);
-    }
-    body::-webkit-scrollbar{width:10px}
-    body::-webkit-scrollbar-track{background:rgba(0,0,0,.25)}
-    body::-webkit-scrollbar-thumb{
-      background:rgba(255,255,255,.18);
-      border-radius:999px;
-      border:2px solid rgba(0,0,0,.25);
     }
 
-    #bg{
+    #particles-js{
       position:fixed; inset:0;
       z-index:0;
     }
@@ -99,7 +92,7 @@
   </style>
 </head>
 <body>
-  <div id="bg" aria-hidden="true"></div>
+  <div id="particles-js" aria-hidden="true"></div>
 
   <div class="wrap">
     <div class="card" role="main">
@@ -126,25 +119,23 @@
   <script>
     document.getElementById("year").textContent = "© " + new Date().getFullYear();
 
-    // Vanta FOG: set mouseControls false (no interaction)
-    const effect = VANTA.FOG({
-      el: "#bg",
-      mouseControls: false,
-      touchControls: false,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      highlightColor: 0xb06cff,  // purple glow
-      midtoneColor:    0x3c1a7a,  // deep violet
-      lowlightColor:   0x0b0620,  // near-black
-      baseColor:       0x050314,
-      blurFactor: 0.70,
-      speed: 1.10,
-      zoom: 0.90
+    // No interactivity (hover/click disabled)
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 120, density: { enable: true, value_area: 900 } },
+        color: { value: ["#ffffff", "#caa7ff", "#7aa7ff", "#ff7bd6"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.55, random: true },
+        size: { value: 2.0, random: true },
+        line_linked: { enable: true, distance: 140, color: "#a77cff", opacity: 0.12, width: 1 },
+        move: { enable: true, speed: 0.55, direction: "none", out_mode: "out" }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: { onhover: { enable: false }, onclick: { enable: false }, resize: true }
+      },
+      retina_detect: true
     });
-
-    // Cleanup if needed later
-    window.addEventListener("beforeunload", () => effect && effect.destroy && effect.destroy());
   </script>
 </body>
 </html>
