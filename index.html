@@ -6,7 +6,7 @@
   <title>Cosmic RAD Games</title>
   <meta name="description" content="We craft heartfelt, memorable game experiences for players everywhere." />
 
-  <!-- Font Awesome (open-source icons via CDN) -->
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -32,6 +32,7 @@
       width:100vw; height:100vh;
       display:block;
     }
+
     .wrap{
       position:relative;
       height:100%;
@@ -39,88 +40,100 @@
       place-items:center;
       padding:28px;
     }
+
     .card{
       width:min(860px, 100%);
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
       border:1px solid var(--stroke);
       border-radius:24px;
-      padding:26px;
+      padding:32px;
       backdrop-filter: blur(10px);
       box-shadow: 0 30px 90px rgba(0,0,0,.55);
+      text-align:center;
     }
+
     .top{
       display:flex;
-      gap:22px;
+      flex-direction:column;
       align-items:center;
-      flex-wrap:wrap;
+      gap:22px;
     }
+
     .logo{
-      width:140px; height:140px;
-      border-radius:20px;
+      width:160px;
+      height:160px;
+      border-radius:22px;
       border:1px solid rgba(255,255,255,.14);
       background: rgba(0,0,0,.25);
       overflow:hidden;
-      flex:0 0 auto;
       display:grid;
       place-items:center;
     }
+
     .logo img{
-      width:100%; height:100%;
+      width:100%;
+      height:100%;
       object-fit:cover;
       display:block;
     }
+
     h1{
       margin:0;
       font-size: clamp(28px, 4vw, 44px);
       letter-spacing:.3px;
       line-height:1.05;
     }
+
     .tag{
       margin:10px 0 0;
       color:var(--muted);
       font-size: clamp(15px, 1.6vw, 18px);
     }
+
     .desc{
-      margin:14px 0 0;
+      margin:14px auto 0;
       color:rgba(255,255,255,.78);
-      font-size: 16px;
+      font-size:16px;
       line-height:1.55;
-      max-width: 54ch;
+      max-width:54ch;
     }
 
     .row{
       margin-top:18px;
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
+      gap:12px;
+      justify-content:center;
     }
 
-    /* Icon-only social buttons */
-    .row.icons{ gap:12px; }
     .iconbtn{
-      width:44px;height:44px;
-      display:grid;place-items:center;
+      width:44px;
+      height:44px;
+      display:grid;
+      place-items:center;
       border-radius:999px;
       border:1px solid rgba(255,255,255,.16);
       background:rgba(0,0,0,.25);
       color:var(--text);
       text-decoration:none;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
       font-size:18px;
+      transition: transform .12s ease,
+                  background .12s ease,
+                  border-color .12s ease;
     }
+
     .iconbtn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.08);
-      border-color: rgba(255,255,255,.26);
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.26);
     }
 
     .foot{
-      margin-top:16px;
+      margin-top:18px;
       color:rgba(255,255,255,.55);
       font-size:13px;
     }
-    .foot a{color:rgba(255,255,255,.75)}
+
   </style>
 </head>
 <body>
@@ -128,42 +141,51 @@
 
   <div class="wrap">
     <div class="card" role="main">
+
       <div class="top">
+
         <div class="logo">
           <img src="assets/logo.png" alt="Cosmic RAD Games logo" />
         </div>
 
-        <div>
-          <h1>Cosmic RAD Games</h1>
-          <p class="tag">Chasing a childhood dream 🎈 making art and video games</p>
-          <p class="desc">We craft heartfelt, memorable game experiences for players everywhere.</p>
+        <h1>Cosmic RAD Games</h1>
 
-          <!-- Icon-only social links -->
-          <div class="row icons" aria-label="Social links">
-            <a class="iconbtn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-              <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-            <a class="iconbtn" href="https://x.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="X">
-              <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-            </a>
-            <a class="iconbtn" href="https://www.youtube.com/@cosmicradgames" target="_blank" rel="noreferrer" aria-label="YouTube">
-              <i class="fa-brands fa-youtube" aria-hidden="true"></i>
-            </a>
-            <a class="iconbtn" href="https://www.instagram.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="Instagram">
-              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-            </a>
-          </div>
+        <p class="tag">
+          Chasing a childhood dream 🎈 making art and video games
+        </p>
 
-          <div class="foot">
-            <span id="year"></span> Cosmic RAD Games. All rights reserved.
-          </div>
+        <p class="desc">
+          We craft heartfelt, memorable game experiences for players everywhere.
+        </p>
+
+        <!-- Social icons -->
+        <div class="row icons">
+          <a class="iconbtn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+
+          <a class="iconbtn" href="https://x.com/cosmicradgames" target="_blank" aria-label="X">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+
+          <a class="iconbtn" href="https://www.youtube.com/@cosmicradgames" target="_blank" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+
+          <a class="iconbtn" href="https://www.instagram.com/cosmicradgames" target="_blank" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
         </div>
+
+        <div class="foot">
+          <span id="year"></span> Cosmic RAD Games. All rights reserved.
+        </div>
+
       </div>
     </div>
   </div>
 
   <script>
-    // Simple starfield w/ mouse parallax
     const c = document.getElementById("stars");
     const ctx = c.getContext("2d");
     const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
@@ -171,86 +193,63 @@
     let w=0,h=0,stars=[],mx=0,my=0;
 
     function resize(){
-      w = Math.floor(window.innerWidth);
-      h = Math.floor(window.innerHeight);
-      c.width = Math.floor(w * DPR);
-      c.height = Math.floor(h * DPR);
+      w = window.innerWidth;
+      h = window.innerHeight;
+      c.width = w * DPR;
+      c.height = h * DPR;
       c.style.width = w + "px";
       c.style.height = h + "px";
       ctx.setTransform(DPR,0,0,DPR,0,0);
 
-      const count = Math.floor((w*h) / 12000); // density
-      stars = Array.from({length: count}, () => makeStar(true));
+      const count = Math.floor((w*h)/12000);
+      stars = Array.from({length:count},()=>makeStar(true));
     }
 
-    function rand(min,max){ return min + Math.random()*(max-min); }
+    function rand(a,b){return a+Math.random()*(b-a)}
 
-    function makeStar(randomPos=false){
-      const z = rand(0.2, 1.0); // depth
-      return {
-        x: randomPos ? rand(0,w) : w + rand(0, 80),
-        y: randomPos ? rand(0,h) : rand(0,h),
-        r: rand(0.6, 2.2) * z,
+    function makeStar(rp=false){
+      const z=rand(.2,1);
+      return{
+        x:rp?rand(0,w):w+80,
+        y:rp?rand(0,h):rand(0,h),
+        r:rand(.6,2.2)*z,
         z,
-        tw: rand(0, Math.PI*2),
-        sp: rand(0.08, 0.35) * (0.6 + (1 - z)), // drift speed
-      };
-    }
-
-    function clear(){
-      // subtle fade for smooth trails
-      ctx.fillStyle = "rgba(0,0,0,0.25)";
-      ctx.fillRect(0,0,w,h);
+        tw:rand(0,Math.PI*2),
+        sp:rand(.08,.35)*(1.4-z)
+      }
     }
 
     function draw(){
-      clear();
+      ctx.fillStyle="rgba(0,0,0,.25)";
+      ctx.fillRect(0,0,w,h);
 
-      const px = (mx - w/2) / (w/2);  // -1..1
-      const py = (my - h/2) / (h/2);
+      const px=(mx-w/2)/(w/2);
+      const py=(my-h/2)/(h/2);
 
-      for (let s of stars){
-        s.tw += 0.02 * (0.3 + s.z);
-        const twinkle = 0.55 + 0.45*Math.sin(s.tw);
+      for(const s of stars){
+        s.tw+=.02;
+        s.x-=s.sp;
+        if(s.x<-80)Object.assign(s,makeStar());
 
-        // drift left-to-right with tiny vertical variation
-        s.x -= s.sp * (0.7 + (1-s.z));
-        if (s.x < -80) Object.assign(s, makeStar(false));
+        const x=s.x+px*(18*(1-s.z));
+        const y=s.y+py*(14*(1-s.z));
 
-        const offx = px * (18 * (1 - s.z));
-        const offy = py * (14 * (1 - s.z));
-
-        const x = s.x + offx;
-        const y = s.y + offy;
-
-        const a = 0.15 + 0.75*twinkle*s.z;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(255,255,255,${a})`;
-        ctx.arc(x, y, s.r, 0, Math.PI*2);
+        ctx.fillStyle=`rgba(255,255,255,${.2+.7*s.z})`;
+        ctx.arc(x,y,s.r,0,Math.PI*2);
         ctx.fill();
-
-        // occasional sparkle
-        if (s.z > 0.85 && twinkle > 0.92){
-          ctx.fillStyle = `rgba(180,220,255,${0.35*twinkle})`;
-          ctx.fillRect(x-1, y, 2, 1);
-          ctx.fillRect(x, y-1, 1, 2);
-        }
       }
-
       requestAnimationFrame(draw);
     }
 
-    window.addEventListener("mousemove", (e)=>{ mx=e.clientX; my=e.clientY; }, {passive:true});
-    window.addEventListener("touchmove", (e)=>{ if(e.touches[0]){mx=e.touches[0].clientX; my=e.touches[0].clientY;} }, {passive:true});
-    window.addEventListener("resize", resize);
+    window.addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
+    window.addEventListener("resize",resize);
 
     resize();
-    ctx.fillStyle = "black";
-    ctx.fillRect(0,0,w,h);
     draw();
 
-    // Auto-year footer
-    document.getElementById("year").textContent = "© " + new Date().getFullYear();
+    document.getElementById("year").textContent =
+      "© " + new Date().getFullYear();
   </script>
 </body>
 </html>
