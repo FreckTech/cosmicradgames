@@ -19,7 +19,6 @@
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
       --muted2:rgba(255,255,255,.55);
-      --stroke:rgba(255,255,255,.14);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -28,13 +27,11 @@
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
-
       background:
         radial-gradient(900px 650px at 18% 20%, rgba(178,107,255,.22) 0%, rgba(0,0,0,0) 60%),
         radial-gradient(900px 650px at 82% 25%, rgba(74,163,255,.16) 0%, rgba(0,0,0,0) 55%),
         radial-gradient(900px 650px at 50% 90%, rgba(255,79,191,.11) 0%, rgba(0,0,0,0) 55%),
         radial-gradient(1200px 900px at 30% 20%, #1a1240 0%, var(--bg1) 50%, var(--bg0) 100%);
-
       overflow:auto;
       overflow-x:hidden;
       scroll-behavior:smooth;
@@ -61,6 +58,12 @@
       width:min(920px, 100%);
       text-align:center;
       padding:26px 18px;
+      animation: fadeUp .8s ease-out both;
+    }
+
+    @keyframes fadeUp{
+      from{ opacity:0; transform: translateY(14px); }
+      to  { opacity:1; transform: translateY(0); }
     }
 
     .logo{
@@ -83,12 +86,29 @@
       line-height:1.05;
     }
 
-    /* UPDATED TAG */
+    /* ✨ Tagline: gradient + glow + subtle pulse */
     .tag{
       margin:14px 0 0;
-      color:var(--muted);
       font-size:22px;
-      font-weight:500;
+      font-weight:700;
+      letter-spacing:.2px;
+
+      background: linear-gradient(90deg, rgba(178,107,255,1), rgba(74,163,255,1), rgba(255,79,191,1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+
+      text-shadow:
+        0 0 10px rgba(178,107,255,.25),
+        0 0 18px rgba(74,163,255,.18),
+        0 0 22px rgba(255,79,191,.14);
+
+      animation: tagGlow 2.8s ease-in-out infinite;
+    }
+
+    @keyframes tagGlow{
+      0%,100%{ filter: drop-shadow(0 0 0 rgba(255,255,255,0)); transform: translateY(0); }
+      50%    { filter: drop-shadow(0 0 10px rgba(178,107,255,.25)); transform: translateY(-1px); }
     }
 
     .row{
@@ -97,6 +117,7 @@
       gap:14px;
       justify-content:center;
       flex-wrap:wrap;
+      animation: fadeUp .9s ease-out .05s both;
     }
 
     .iconbtn{
@@ -131,6 +152,12 @@
       color: rgba(255,255,255,.88);
       text-decoration:none;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      animation: fadeUp 1s ease-out .1s both;
+    }
+    .scrollHint:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.26);
     }
 
     @keyframes bob {
@@ -152,19 +179,23 @@
     .aboutInner{
       width:min(920px, 100%);
       max-width:72ch;
+      animation: fadeUp .9s ease-out both;
     }
 
     .aboutTitle{
       margin:0 0 14px;
       font-size:18px;
-      font-weight:600;
+      font-weight:700;
+      letter-spacing:.25px;
+      color: rgba(255,255,255,.90);
     }
 
     .aboutText{
-      color:rgba(255,255,255,.8);
+      color:rgba(255,255,255,.80);
       font-size:16px;
       line-height:1.9;
     }
+    .aboutText p{margin:0 0 16px}
 
     .footer{
       margin-top:30px;
@@ -175,65 +206,131 @@
 </head>
 
 <body>
-<canvas id="stars"></canvas>
+  <canvas id="stars"></canvas>
 
-<main>
+  <main>
+    <section class="hero">
+      <div class="heroInner">
+        <div class="logo">
+          <img src="assets/logo.png" alt="Cosmic RAD Games logo" />
+        </div>
 
-<section class="hero">
-  <div class="heroInner">
+        <h1>Cosmic RAD Games</h1>
 
-    <div class="logo">
-      <img src="assets/logo.png" alt="Cosmic RAD Games logo" />
-    </div>
+        <p class="tag">Indie Game Studio 🕹️</p>
 
-    <h1>Cosmic RAD Games</h1>
+        <div class="row" aria-label="Social links">
+          <a class="iconbtn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a class="iconbtn" href="https://x.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="X">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a class="iconbtn" href="https://www.youtube.com/@cosmicradgames" target="_blank" rel="noreferrer" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+          <a class="iconbtn" href="https://www.instagram.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
 
-    <!-- UPDATED TEXT -->
-    <p class="tag">Indie Game Studio 🕹️</p>
+        <a class="scrollHint" href="#about" aria-label="Scroll to What we do">
+          <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
 
-    <div class="row">
-      <a class="iconbtn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-      <a class="iconbtn" href="https://x.com/cosmicradgames" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-      <a class="iconbtn" href="https://www.youtube.com/@cosmicradgames" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-      <a class="iconbtn" href="https://www.instagram.com/cosmicradgames" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-    </div>
+    <section class="about" id="about">
+      <div class="aboutInner">
+        <div class="aboutTitle">What we do</div>
 
-    <a class="scrollHint" href="#about">
-      <i class="fa-solid fa-chevron-down"></i>
-    </a>
+        <div class="aboutText">
+          <p>
+            Crafting heartfelt, memorable game experiences for players everywhere, blending imagination,
+            polished gameplay, and striking visual worlds.
+          </p>
+          <p>
+            Cosmic RAD Games is guided by a deep love of games, constant experimentation, and the pursuit
+            of experiences that linger long after the screen fades to black.
+          </p>
+        </div>
 
-  </div>
-</section>
+        <div class="footer">
+          <span id="year"></span> Cosmic RAD Games. All rights reserved.
+        </div>
+      </div>
+    </section>
+  </main>
 
-<section class="about" id="about">
-  <div class="aboutInner">
+  <script>
+    // Year
+    document.getElementById("year").textContent = "© " + new Date().getFullYear();
 
-    <div class="aboutTitle">What we do</div>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
 
-    <div class="aboutText">
-      <p>
-        Crafting heartfelt, memorable game experiences for players everywhere, blending imagination,
-        polished gameplay, and striking visual worlds.
-      </p>
-      <p>
-        Cosmic RAD Games is guided by a deep love of games, constant experimentation, and the pursuit
-        of experiences that linger long after the screen fades to black.
-      </p>
-    </div>
+    // Starfield (no mouse interaction)
+    const c = document.getElementById("stars");
+    const ctx = c.getContext("2d");
+    const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
 
-    <div class="footer">
-      <span id="year"></span> Cosmic RAD Games. All rights reserved.
-    </div>
+    let w=0,h=0,stars=[];
 
-  </div>
-</section>
+    function resize(){
+      w = window.innerWidth;
+      h = window.innerHeight;
+      c.width = Math.floor(w * DPR);
+      c.height = Math.floor(h * DPR);
+      c.style.width = w + "px";
+      c.style.height = h + "px";
+      ctx.setTransform(DPR,0,0,DPR,0,0);
 
-</main>
+      const count = Math.floor((w*h)/12000);
+      stars = Array.from({length:count},()=>makeStar(true));
+    }
 
-<script>
-document.getElementById("year").textContent =
-  "© " + new Date().getFullYear();
-</script>
+    function rand(a,b){ return a + Math.random()*(b-a); }
 
+    function makeStar(randomPos=false){
+      const z = rand(.2,1);
+      return {
+        x: randomPos ? rand(0,w) : w+80,
+        y: randomPos ? rand(0,h) : rand(0,h),
+        r: rand(.6,2.2) * z,
+        z,
+        tw: rand(0,Math.PI*2),
+        sp: rand(.08,.35) * (1.4 - z)
+      };
+    }
+
+    function draw(){
+      ctx.fillStyle = "rgba(0,0,0,.22)";
+      ctx.fillRect(0,0,w,h);
+
+      for(const s of stars){
+        s.tw += .02;
+        s.x  -= s.sp;
+        if(s.x < -80) Object.assign(s, makeStar(false));
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(255,255,255,${.18 + .75*s.z})`;
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    draw();
+  </script>
 </body>
 </html>
