@@ -4,9 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cosmic RAD Games</title>
-  <meta name="description" content="We craft heartfelt, memorable game experiences for players everywhere." />
+  <meta name="description" content="Crafting heartfelt, memorable game experiences for players everywhere." />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
 
   <!-- Font Awesome Icons -->
@@ -17,16 +16,11 @@
     :root{
       --bg0:#05040d;
       --bg1:#140a2f;
-      --glow1:#b26bff;
-      --glow2:#4aa3ff;
-      --glow3:#ff4fbf;
-
-      --stroke:rgba(255,255,255,.14);
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
       --muted2:rgba(255,255,255,.55);
+      --stroke:rgba(255,255,255,.14);
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
 
@@ -35,14 +29,12 @@
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
 
-      /* more colorful cosmic background */
       background:
-        radial-gradient(900px 650px at 18% 20%, rgba(178,107,255,.25) 0%, rgba(0,0,0,0) 60%),
-        radial-gradient(900px 650px at 82% 25%, rgba(74,163,255,.18) 0%, rgba(0,0,0,0) 55%),
-        radial-gradient(900px 650px at 50% 90%, rgba(255,79,191,.12) 0%, rgba(0,0,0,0) 55%),
+        radial-gradient(900px 650px at 18% 20%, rgba(178,107,255,.22) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(900px 650px at 82% 25%, rgba(74,163,255,.16) 0%, rgba(0,0,0,0) 55%),
+        radial-gradient(900px 650px at 50% 90%, rgba(255,79,191,.11) 0%, rgba(0,0,0,0) 55%),
         radial-gradient(1200px 900px at 30% 20%, #1a1240 0%, var(--bg1) 50%, var(--bg0) 100%);
 
-      /* allow scroll for the “about” section */
       overflow:auto;
       overflow-x:hidden;
       scroll-behavior:smooth;
@@ -50,7 +42,6 @@
       scrollbar-width: thin;
       scrollbar-color: rgba(255,255,255,.22) rgba(0,0,0,.25);
     }
-
     body::-webkit-scrollbar{width:10px}
     body::-webkit-scrollbar-track{background:rgba(0,0,0,.25)}
     body::-webkit-scrollbar-thumb{
@@ -67,205 +58,159 @@
       pointer-events:none;
     }
 
-    .wrap{
-      position:relative;
-      z-index:1;
+    /* --- layout like the example --- */
+    main{position:relative; z-index:1}
+
+    .hero{
       min-height:100vh;
       display:grid;
       place-items:center;
-      padding:28px;
+      padding:48px 22px 26px;
     }
 
-    /* upgraded card */
-    .card{
-      width:min(900px, 100%);
-      border-radius:28px;
-      padding:34px 34px 28px;
+    .heroInner{
+      width:min(920px, 100%);
       text-align:center;
-      background:
-        radial-gradient(900px 500px at 50% -40%, rgba(178,107,255,.22) 0%, rgba(0,0,0,0) 60%),
-        radial-gradient(700px 400px at 110% 40%, rgba(74,163,255,.14) 0%, rgba(0,0,0,0) 55%),
-        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.14);
-      backdrop-filter: blur(12px);
-      box-shadow:
-        0 30px 90px rgba(0,0,0,.55),
-        0 0 0 1px rgba(255,255,255,.06) inset;
-      position:relative;
-      overflow:hidden;
-    }
-
-    /* subtle neon rim */
-    .card::before{
-      content:"";
-      position:absolute; inset:-2px;
-      border-radius:30px;
-      background: radial-gradient(1000px 500px at 20% 20%, rgba(178,107,255,.28), transparent 55%),
-                  radial-gradient(900px 500px at 80% 35%, rgba(74,163,255,.18), transparent 55%),
-                  radial-gradient(900px 500px at 50% 95%, rgba(255,79,191,.14), transparent 60%);
-      filter: blur(14px);
-      opacity:.7;
-      pointer-events:none;
-    }
-
-    .top{
-      position:relative;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:18px;
-      z-index:1;
+      padding:26px 18px;
     }
 
     .logo{
-      width:160px;
-      height:160px;
-      border-radius:24px;
-      border:1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.22);
+      width:160px; height:160px;
+      border-radius:26px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.18);
       overflow:hidden;
       display:grid;
       place-items:center;
-      box-shadow: 0 14px 40px rgba(0,0,0,.45);
+      margin:0 auto 18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
     }
     .logo img{width:100%;height:100%;object-fit:cover;display:block}
 
     h1{
       margin:0;
-      font-size: clamp(30px, 4.2vw, 48px);
+      font-size: clamp(34px, 5vw, 60px);
       letter-spacing:.3px;
       line-height:1.05;
     }
 
     .tag{
-      margin:0;
+      margin:12px 0 0;
       color:var(--muted);
-      font-size: clamp(15px, 1.6vw, 18px);
-    }
-
-    /* “Who are we?” jump button */
-    .jump{
-      margin-top:4px;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.18);
-      color: rgba(255,255,255,.85);
-      text-decoration:none;
-      font-size:14px;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .jump:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.26);
-    }
-    .jump i{opacity:.9}
-
-    .divider{
-      width:min(520px, 90%);
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
-      margin: 12px 0 2px;
-    }
-
-    /* About section (separated, less compact) */
-    .about{
-      width:100%;
-      max-width:62ch;
-      margin-top:6px;
-      padding: 0;
-      text-align:center;
-    }
-
-    .about h2{
-      margin: 8px 0 8px;
-      font-size: 15px;
-      letter-spacing:.2px;
-      color: rgba(255,255,255,.88);
-      font-weight: 600;
-    }
-
-    .desc{
-      margin: 0 auto;
-      color: rgba(255,255,255,.78);
-      font-size: 16px;
-      line-height: 1.7;
+      font-size: clamp(15px, 1.8vw, 20px);
     }
 
     .row{
-      margin-top:18px;
+      margin-top:22px;
       display:flex;
-      flex-wrap:wrap;
-      gap:12px;
+      gap:14px;
       justify-content:center;
+      flex-wrap:wrap;
     }
 
     .iconbtn{
-      width:46px;
-      height:46px;
+      width:48px;
+      height:48px;
       display:grid;
       place-items:center;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.18);
       color:var(--text);
       text-decoration:none;
-      font-size:19px;
+      font-size:20px;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
     .iconbtn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-      border-color:rgba(255,255,255,.26);
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.28);
     }
 
-    .foot{
-      margin-top:18px;
-      color:var(--muted2);
-      font-size:13px;
+    .down{
+      margin-top:28px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:56px; height:56px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.12);
+      color: rgba(255,255,255,.85);
+      text-decoration:none;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .down:hover{
+      transform: translateY(1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.26);
+    }
+    .down i{font-size:20px}
+
+    /* About section */
+    .about{
+      padding: 22px 22px 60px;
+      display:flex;
+      justify-content:center;
     }
 
-    /* small extra space so scroll feels intentional */
-    .spacer{height:14vh}
+    .aboutInner{
+      width:min(920px, 100%);
+      padding: 26px 0 0;
+    }
+
+    .aboutTitle{
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing:.2px;
+      color: rgba(255,255,255,.90);
+    }
+
+    .aboutText{
+      margin:0;
+      max-width: 66ch;
+      color: rgba(255,255,255,.78);
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .aboutText p{margin: 0 0 14px}
+    .footer{
+      margin-top: 34px;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+
+    /* Align About like the example (left text) */
+    .aboutInner{ text-align:left; }
+    .aboutTitle, .aboutText, .footer{ margin-left:0; }
+
+    /* small glow divider */
+    .hairline{
+      height:1px;
+      width:100%;
+      max-width: 920px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.14), transparent);
+    }
   </style>
 </head>
+
 <body>
   <canvas id="stars"></canvas>
 
-  <div class="wrap">
-    <div class="card" role="main">
-      <div class="top">
+  <main>
+    <!-- HERO (centered like your example) -->
+    <section class="hero" id="top">
+      <div class="heroInner">
         <div class="logo">
           <img src="assets/logo.png" alt="Cosmic RAD Games logo" />
         </div>
 
         <h1>Cosmic RAD Games</h1>
-
         <p class="tag">In pursuit of a childhood dream 🎈 making art and video games</p>
 
-        <a class="jump" href="#about" aria-label="Scroll to about">
-          Who are we? <i class="fa-solid fa-arrow-down"></i>
-        </a>
-
-        <div class="divider"></div>
-
-        <section class="about" id="about">
-          <h2>About</h2>
-          <p class="desc">
-            Crafting heartfelt, memorable game experiences for players everywhere—blending imagination, polished gameplay,
-            and striking visual worlds.
-          </p>
-          <p class="desc" style="margin-top:10px">
-            Cosmic RAD Games is guided by a deep love of games, constant experimentation, and the pursuit of experiences
-            that linger long after the screen fades to black.
-          </p>
-        </section>
-
-        <div class="row icons" aria-label="Social links">
+        <div class="row" aria-label="Social links">
           <a class="iconbtn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank" rel="noreferrer" aria-label="LinkedIn">
             <i class="fa-brands fa-linkedin-in"></i>
           </a>
@@ -280,17 +225,39 @@
           </a>
         </div>
 
-        <div class="foot">
+        <a class="down" href="#about" aria-label="Scroll to About">
+          <i class="fa-solid fa-chevron-down"></i>
+        </a>
+      </div>
+    </section>
+
+    <div class="hairline" aria-hidden="true"></div>
+
+    <!-- ABOUT (below, left-aligned like the example) -->
+    <section class="about" id="about">
+      <div class="aboutInner">
+        <h2 class="aboutTitle">About</h2>
+
+        <div class="aboutText">
+          <p>
+            Crafting heartfelt, memorable game experiences for players everywhere, blending imagination,
+            polished gameplay, and striking visual worlds.
+          </p>
+          <p>
+            Cosmic RAD Games is guided by a deep love of games, constant experimentation, and the pursuit
+            of experiences that linger long after the screen fades to black.
+          </p>
+        </div>
+
+        <div class="footer">
           <span id="year"></span> Cosmic RAD Games. All rights reserved.
         </div>
       </div>
-    </div>
-
-    <div class="spacer" aria-hidden="true"></div>
-  </div>
+    </section>
+  </main>
 
   <script>
-    // Footer year
+    // Year
     document.getElementById("year").textContent = "© " + new Date().getFullYear();
 
     // Starfield (no mouse interaction)
@@ -303,8 +270,8 @@
     function resize(){
       w = window.innerWidth;
       h = window.innerHeight;
-      c.width = w * DPR;
-      c.height = h * DPR;
+      c.width = Math.floor(w * DPR);
+      c.height = Math.floor(h * DPR);
       c.style.width = w + "px";
       c.style.height = h + "px";
       ctx.setTransform(DPR,0,0,DPR,0,0);
