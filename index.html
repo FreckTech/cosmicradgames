@@ -6,7 +6,7 @@
   <title>Cosmic RAD Games</title>
   <meta name="description" content="We craft heartfelt, memorable game experiences for players everywhere." />
 
-  <!-- Open-source fonts (Google Fonts) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -15,52 +15,46 @@
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+  <!-- tsParticles Stars preset (bundle) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-stars@3/tsparticles.preset.stars.bundle.min.js"></script>
+
   <style>
     :root{
-      --bg:#070812;
-      --stroke:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.92);
+      --bg0:#050314;
+      --bg1:#160A3A;
+      --bg2:#2B0B66;
+      --stroke:rgba(255,255,255,.14);
+      --text:rgba(255,255,255,.93);
       --muted:rgba(255,255,255,.70);
       --muted2:rgba(255,255,255,.55);
-      --panelTop:rgba(255,255,255,.06);
+      --panelTop:rgba(255,255,255,.07);
       --panelBot:rgba(255,255,255,.03);
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
-
     body{
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 800px at 30% 20%, #1a1240 0%, var(--bg) 55%, #04040b 100%);
       color:var(--text);
-
-      /* allow scrolling */
-      overflow:auto;
-      overflow-x:hidden;
-
-      /* nice default scroll on supported browsers */
-      scroll-behavior:smooth;
+      background:
+        radial-gradient(900px 700px at 20% 15%, rgba(186,85,255,.35) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(1100px 800px at 80% 30%, rgba(72,120,255,.22) 0%, rgba(0,0,0,0) 55%),
+        radial-gradient(1200px 900px at 50% 90%, rgba(255,70,170,.12) 0%, rgba(0,0,0,0) 50%),
+        linear-gradient(180deg, var(--bg1), var(--bg0));
+      overflow:auto; overflow-x:hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.22) rgba(0,0,0,.25);
     }
-
-    /* Subtle custom scrollbar (no lib) */
-    /* Chrome/Edge/Safari */
-    body::-webkit-scrollbar{ width: 10px; }
-    body::-webkit-scrollbar-track{ background: rgba(0,0,0,.25); }
+    body::-webkit-scrollbar{width:10px}
+    body::-webkit-scrollbar-track{background:rgba(0,0,0,.25)}
     body::-webkit-scrollbar-thumb{
-      background: rgba(255,255,255,.18);
-      border-radius: 999px;
-      border: 2px solid rgba(0,0,0,.25);
+      background:rgba(255,255,255,.18);
+      border-radius:999px;
+      border:2px solid rgba(0,0,0,.25);
     }
-    body::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.28); }
 
-    /* Firefox */
-    body{ scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.22) rgba(0,0,0,.25); }
-
-    canvas{
+    #tsparticles{
       position:fixed; inset:0;
-      width:100vw; height:100vh;
-      display:block;
       z-index:0;
     }
 
@@ -72,7 +66,6 @@
       place-items:center;
       padding:28px;
     }
-
     .card{
       width:min(860px, 100%);
       background: linear-gradient(180deg, var(--panelTop), var(--panelBot));
@@ -83,138 +76,57 @@
       box-shadow: 0 30px 90px rgba(0,0,0,.55);
       text-align:center;
     }
-
-    .top{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:18px;
-    }
-
+    .top{display:flex;flex-direction:column;align-items:center;gap:18px}
     .logo{
-      width:160px;
-      height:160px;
-      border-radius:22px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.25);
-      overflow:hidden;
-      display:grid;
-      place-items:center;
+      width:160px;height:160px;border-radius:22px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.25);
+      overflow:hidden;display:grid;place-items:center;
     }
-
-    .logo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
     h1{
       margin:2px 0 0;
-      font-family: "Space Grotesk", Inter, system-ui, sans-serif;
+      font-family:"Space Grotesk", Inter, system-ui, sans-serif;
       font-size: clamp(30px, 4.2vw, 48px);
-      letter-spacing: .2px;
-      line-height: 1.02;
+      line-height:1.02;
     }
-
-    .tag{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-weight:500;
-      font-size: clamp(15px, 1.6vw, 18px);
-    }
-
-    .desc{
-      margin:10px auto 0;
-      color:rgba(255,255,255,.78);
-      font-size:16px;
-      line-height:1.6;
-      max-width:56ch;
-    }
-
-    .row{
-      margin-top:18px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      justify-content:center;
-    }
-
+    .tag{margin:6px 0 0;color:var(--muted);font-weight:500}
+    .desc{margin:10px auto 0;color:rgba(255,255,255,.80);max-width:56ch;line-height:1.6}
+    .row{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
     .iconbtn{
-      width:46px;
-      height:46px;
-      display:grid;
-      place-items:center;
+      width:46px;height:46px;display:grid;place-items:center;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.18);
       background:rgba(0,0,0,.25);
       color:var(--text);
       text-decoration:none;
       font-size:19px;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      transition:transform .12s ease, background .12s ease, border-color .12s ease;
     }
-
-    .iconbtn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-      border-color:rgba(255,255,255,.26);
-    }
-
-    .iconbtn:focus-visible{
-      outline: 2px solid rgba(255,255,255,.35);
-      outline-offset: 3px;
-    }
-
-    .foot{
-      margin-top:18px;
-      color:var(--muted2);
-      font-size:13px;
-    }
-
-    /* Spacer so you actually can scroll (remove if you don't want extra space) */
-    .spacer{ height: 18vh; }
+    .iconbtn:hover{transform:translateY(-1px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.28)}
+    .foot{margin-top:18px;color:var(--muted2);font-size:13px}
+    .spacer{height:16vh}
   </style>
 </head>
-
 <body>
-  <canvas id="stars"></canvas>
+  <div id="tsparticles" aria-hidden="true"></div>
 
   <div class="wrap">
     <div class="card" role="main">
       <div class="top">
-
-        <div class="logo">
-          <img src="assets/logo.png" alt="Cosmic RAD Games logo" />
-        </div>
-
+        <div class="logo"><img src="assets/logo.png" alt="Cosmic RAD Games logo" /></div>
         <h1>Cosmic RAD Games</h1>
-
         <p class="tag">Chasing a childhood dream 🎈 making art and video games</p>
-
         <p class="desc">We craft heartfelt, memorable game experiences for players everywhere.</p>
 
-        <div class="row icons" aria-label="Social links">
-          <a class="iconbtn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-          </a>
-
-          <a class="iconbtn" href="https://x.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="X">
-            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-          </a>
-
-          <a class="iconbtn" href="https://www.youtube.com/@cosmicradgames" target="_blank" rel="noreferrer" aria-label="YouTube">
-            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
-          </a>
-
-          <a class="iconbtn" href="https://www.instagram.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="Instagram">
-            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-          </a>
+        <div class="row" aria-label="Social links">
+          <a class="iconbtn" href="https://www.linkedin.com/company/cosmic-rad-games" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a class="iconbtn" href="https://x.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+          <a class="iconbtn" href="https://www.youtube.com/@cosmicradgames" target="_blank" rel="noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a class="iconbtn" href="https://www.instagram.com/cosmicradgames" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
         </div>
 
-        <div class="foot">
-          <span id="year"></span> Cosmic RAD Games. All rights reserved.
-        </div>
-
+        <div class="foot"><span id="year"></span> Cosmic RAD Games. All rights reserved.</div>
       </div>
     </div>
 
@@ -222,84 +134,24 @@
   </div>
 
   <script>
-    // Starfield w/ mouse parallax (kept simple)
-    const c = document.getElementById("stars");
-    const ctx = c.getContext("2d");
-    const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-
-    let w=0,h=0,stars=[],mx=0,my=0;
-
-    function resize(){
-      w = Math.floor(window.innerWidth);
-      h = Math.floor(window.innerHeight);
-      c.width = Math.floor(w * DPR);
-      c.height = Math.floor(h * DPR);
-      c.style.width = w + "px";
-      c.style.height = h + "px";
-      ctx.setTransform(DPR,0,0,DPR,0,0);
-
-      const count = Math.floor((w*h) / 12000);
-      stars = Array.from({length: count}, () => makeStar(true));
-    }
-
-    function rand(min,max){ return min + Math.random()*(max-min); }
-
-    function makeStar(randomPos=false){
-      const z = rand(0.2, 1.0);
-      return {
-        x: randomPos ? rand(0,w) : w + rand(0, 80),
-        y: randomPos ? rand(0,h) : rand(0,h),
-        r: rand(0.6, 2.2) * z,
-        z,
-        tw: rand(0, Math.PI*2),
-        sp: rand(0.08, 0.35) * (0.6 + (1 - z)),
-      };
-    }
-
-    function clear(){
-      ctx.fillStyle = "rgba(0,0,0,0.25)";
-      ctx.fillRect(0,0,w,h);
-    }
-
-    function draw(){
-      clear();
-
-      const px = (mx - w/2) / (w/2);
-      const py = (my - h/2) / (h/2);
-
-      for (let s of stars){
-        s.tw += 0.02 * (0.3 + s.z);
-        const twinkle = 0.55 + 0.45*Math.sin(s.tw);
-
-        s.x -= s.sp * (0.7 + (1-s.z));
-        if (s.x < -80) Object.assign(s, makeStar(false));
-
-        const offx = px * (18 * (1 - s.z));
-        const offy = py * (14 * (1 - s.z));
-
-        const x = s.x + offx;
-        const y = s.y + offy;
-
-        const a = 0.15 + 0.75*twinkle*s.z;
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(255,255,255,${a})`;
-        ctx.arc(x, y, s.r, 0, Math.PI*2);
-        ctx.fill();
-      }
-
-      requestAnimationFrame(draw);
-    }
-
-    window.addEventListener("mousemove", (e)=>{ mx=e.clientX; my=e.clientY; }, {passive:true});
-    window.addEventListener("touchmove", (e)=>{ if(e.touches[0]){mx=e.touches[0].clientX; my=e.touches[0].clientY;} }, {passive:true});
-    window.addEventListener("resize", resize);
-
-    resize();
-    ctx.fillStyle = "black";
-    ctx.fillRect(0,0,w,h);
-    draw();
-
     document.getElementById("year").textContent = "© " + new Date().getFullYear();
+
+    // Stars preset + purple cosmic tweaks + NO mouse interaction
+    (async () => {
+      await tsParticles.load("tsparticles", {
+        preset: "stars",
+        background: { color: "transparent" },
+        interactivity: {
+          events: { onHover: { enable: false }, onClick: { enable: false }, resize: true }
+        },
+        particles: {
+          color: { value: ["#ffffff", "#caa7ff", "#7aa7ff", "#ff7bd6"] },
+          opacity: { value: { min: 0.25, max: 0.9 } },
+          size: { value: { min: 0.6, max: 2.2 } },
+          move: { speed: 0.25 }
+        }
+      });
+    })();
   </script>
 </body>
 </html>
